@@ -5,25 +5,26 @@ const helmet = require("helmet");
 const Request = require("./models/Request");
 const authRoutes = require("./routes/auth");
 const { verifyToken } = require('./middleware/authMiddleware');
-
-
 const app = express();
-const PORT = 5002;
 
 app.use(cors());
 app.use(helmet()); // ✅ Adds security headers
 app.use(express.json());
 
+const PORT = process.env.PORT || 5002;
+
 mongoose
-  .connect("mongodb://localhost:27017/ict-queue-tracker", {
+  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/ict-queue-tracker", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log("MongoDB connection error:", err));
 
-// Add auth routes
-app.use("/api/auth", authRoutes);
+
+  app.use(cors({
+    origin: 'https://client-8q74.onrender.com'  
+  }));
 
 // Add request routes
 app.post("/api/requests", async (req, res) => {
@@ -74,6 +75,6 @@ app.get("/api/requests/latest", async (req, res) => {
   });
   
 
-app.listen(PORT, () => {
-  console.log(`🟢 Server running on http://localhost:${PORT}`);
-});
+  app.listen(PORT, () => {
+    console.log(`🟢 Server running on port ${PORT}`);
+  });
