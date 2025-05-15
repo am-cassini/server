@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5002;
 
 // Middleware
 app.use(cors({
-  origin: 'https://client-8q74.onrender.com'  // ✅ Your deployed frontend
+  origin: 'https://client-8q74.onrender.com'  
 }));
 app.use(helmet());
 app.use(express.json());
