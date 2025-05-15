@@ -1,4 +1,3 @@
-// hash.js
 const bcrypt = require("bcrypt");
 
 const password = "password123"; 
