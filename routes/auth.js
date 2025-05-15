@@ -6,8 +6,7 @@ const router = express.Router();
 
 const ADMIN_USER = {
   username: "admin",
-  password: "$2b$10$wKQsXKplM04L7VX0gEzAhOYb8Aapz6B3AyQKd6eqgL8PGtzUeRWXO", // example hashed version
-};
+  password: "$2b$10$6Y4PeBm5KYfm4ASYYXgR9uQXCL4qjOjCx7V5//eOxIV2HNX9DcZU2" };
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
